@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SportsStoreCore.Models;
 using SportsStoreCore.Infrastructure;
 using Newtonsoft.Json;
+using SportsStoreCore.Models.ViewModels;
 
 namespace SportsStoreCore.Controllers
 {
@@ -15,6 +16,13 @@ namespace SportsStoreCore.Controllers
         {
             repository = repo;
         }
+
+        public ViewResult Index(string returnUrl) =>
+            View(new CartIndexViewModel
+            {
+                Cart = GetCart(),
+                ReturnUrl = returnUrl
+            });
 
         public RedirectToActionResult AddToCart(int productID, string returnUrl)
         {
