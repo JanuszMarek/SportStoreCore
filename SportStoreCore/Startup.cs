@@ -32,6 +32,17 @@ namespace SportStoreCore
 
             //services.AddTransient<IProductRepository, FakeProductRepository>();
             services.AddTransient<IProductRepository, EFProductRepository>();
+
+            /*  The AddScoped  method specifies that the same object should be used to satisfy related requests for  Cart
+                instances. How requests are related can be configured, but by default it means that any  Cart  required by
+                components handling the same HTTP request will receive the same object. 
+             */
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+
+            /*  tells MVC to use the  HttpContextAccessor  class when
+            implementations of the  IHttpContextAccessor  interface are required.
+            */
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();
