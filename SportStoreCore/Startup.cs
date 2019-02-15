@@ -30,6 +30,7 @@ namespace SportStoreCore
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("ConnectionString")));
 
+            //PRODUCTS
             //services.AddTransient<IProductRepository, FakeProductRepository>();
             services.AddTransient<IProductRepository, EFProductRepository>();
 
@@ -43,6 +44,10 @@ namespace SportStoreCore
             implementations of the  IHttpContextAccessor  interface are required.
             */
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            //ORDERS
+            services.AddTransient<IOrderRepository, EFOrderRepository>();
+
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();
