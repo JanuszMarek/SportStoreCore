@@ -1,11 +1,11 @@
-﻿@model HomeIndexViewModel
+﻿@model Dictionary<string, string>
 @{
     Layout = "_EmptyLayout";
 }
 
 
 <table class="table table-condensed table-bordered table-striped">
-    @foreach (var kvp in Model.StringDict)
+    @foreach (var kvp in Model)
     {
         <tr><th>@kvp.Key</th><td>@kvp.Value</td></tr>
     }

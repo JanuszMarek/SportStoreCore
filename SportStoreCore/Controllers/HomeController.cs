@@ -31,20 +31,11 @@ namespace SportsStoreCore.Controllers
 
             logger.LogDebug($"Handled {Request.Path} at uptime {uptime.Uptime}");
 
-            HomeIndexViewModel indexViewModel = new HomeIndexViewModel();
-            indexViewModel.StringDict = new Dictionary<string, string>
+            return View(new Dictionary<string, string>
             {
                 ["Message"] = "This is the Index action",
                 ["Uptime"] = $"{uptime.Uptime}ms"
-            };
-
-            indexViewModel.Result = new Result
-            {
-                Controller = nameof(HomeController),
-                Action = nameof(Index)
-            };
-
-            return View(indexViewModel);
+            });
         }
             
 
