@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Lessons.Infrastructure;
+using Microsoft.AspNetCore.Routing;
 
 namespace Lessons
 {
@@ -31,6 +33,9 @@ namespace Lessons
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //add possibility to use Inline Custom Constraint 
+            services.Configure<RouteOptions>(options =>
+                options.ConstraintMap.Add("weekday", typeof(WeekDayConstraint)));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -53,7 +58,41 @@ namespace Lessons
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            //For using Route attributes
+            //default:   {controller}/{action}/{id?} 
             app.UseMvcWithDefaultRoute();
+
+            /*
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "MyRoute",
+                    template: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Home", action = "Index" },
+                    constraints: new { id = new WeekDayConstraint() });
+                //lub Inline Custom Constraint 
+                routes.MapRoute(name: "MyRoute",
+                      template: "{controller=Home}/{action=Index}/{id:weekday?}");
+
+                /*
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action}/{id?}/{*catchall}",
+                    defaults: new { controller = "Home", action = "Index" });
+
+                
+                  routes.MapRoute(name: "MyRoute",
+                      template: "{controller=Home}/{action=Index}/{id:range(10,20)?}");  
+                 * 
+                routes.MapRoute(name: "MyRoute",
+                   template: "{controller:regex(^H.*)=Home}/{action:regex(^Index$|^About$)=Index}/{id?}");
+
+                 routes.MapRoute(name: "MyRoute",
+                      template: "{controller=Home}/{action=Index}/{id:alpha:minlength(6)?}");
+               
+
+            });
+             */
         }
     }
 }
