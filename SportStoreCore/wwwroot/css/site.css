@@ -23,6 +23,12 @@ body {
     width: 100%;
 }
 
+.input-validation-error {
+    border-color: red !important;
+    background-color: #fee !important;
+} 
+
+
 /* QR code generator */
 #qrCode {
     margin: 15px;

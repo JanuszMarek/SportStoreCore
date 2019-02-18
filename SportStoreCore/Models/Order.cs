@@ -15,6 +15,9 @@ namespace SportsStoreCore.Models
         [BindNever]
         public ICollection<CartLine> Lines { get; set; }
 
+        [BindNever]
+        public bool Shipped { get; set; }
+
         [Required]
         public string Name { get; set; }
 
@@ -34,6 +37,8 @@ namespace SportsStoreCore.Models
         public string Country { get; set; }
 
         public bool GiftWrap { get; set; }
+
+
 
     }
 }

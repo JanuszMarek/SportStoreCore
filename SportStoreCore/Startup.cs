@@ -12,7 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SportsStoreCore.Models;
 
-namespace SportStoreCore
+namespace SportsStoreCore
 {
     public class Startup
     {
