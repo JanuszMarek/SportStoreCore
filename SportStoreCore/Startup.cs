@@ -13,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using SportsStoreCore.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using SportsStoreCore.Infrastructure;
+using Microsoft.Extensions.Logging;
 
 namespace SportsStoreCore
 {
@@ -28,6 +30,9 @@ namespace SportsStoreCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<UptimeService>();
+
+
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(
                     Configuration["ProductConnection:ConnectionString"]));
@@ -74,6 +79,13 @@ namespace SportsStoreCore
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
+            //MIDLEWARE
+            app.UseMiddleware<ErrorMiddleware>();
+            app.UseMiddleware<BrowserTypeMiddleware>();
+            app.UseMiddleware<ShortCircuitMiddleware>();
+            app.UseMiddleware<ContentMiddleware>();
+
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
