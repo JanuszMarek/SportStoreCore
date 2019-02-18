@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SportsStoreCore.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace SportsStoreCore
 {
@@ -28,7 +30,14 @@ namespace SportsStoreCore
         {
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(
-                    Configuration.GetConnectionString("ConnectionString")));
+                    Configuration["ProductConnection:ConnectionString"]));
+
+            services.AddDbContext<AppIdentityDbContext>(
+                options => options.UseSqlServer(
+                    Configuration["IdentityConnection:ConnectionString"]));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>();
 
             //PRODUCTS
             //services.AddTransient<IProductRepository, FakeProductRepository>();
@@ -69,6 +78,7 @@ namespace SportsStoreCore
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
+            app.UseIdentity();
             app.UseMvc(routes => {
 
                 routes.MapRoute(
@@ -96,6 +106,7 @@ namespace SportsStoreCore
             });
 
             SeedData.EnsurePopulated(app);
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }
