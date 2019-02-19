@@ -1,0 +1,12 @@
+﻿@model IDictionary<string, string>
+@{
+    ViewData["Title"] = "DictionaryResult";
+}
+
+<h2>DictionaryResult</h2>
+<table class="table table-bordered table-striped table-condensed">
+    @foreach (string key in Model.Keys)
+    {
+        <tr><th>@key :</th><td>@Model[key]</td></tr>
+    }
+</table>
