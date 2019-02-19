@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Lessons.Models;
 using System.Text;
+using Lessons.Infrastructure;
 
 namespace Lessons.Controllers
 {
@@ -42,8 +43,8 @@ namespace Lessons.Controllers
             var city = Request.Form["city"];
             return View("StringResult", $"{name} lives in {city}");
         }
-        */
-
+        
+            //Create HTML Response
         public void ReceiveForm(string name, string city)
         {
             Response.StatusCode = 200;
@@ -51,6 +52,15 @@ namespace Lessons.Controllers
             byte[] content = Encoding.ASCII.GetBytes($"<html><body>{name} lives in {city}</body></html>");
             Response.Body.WriteAsync(content, 0, content.Length);
         }
+        
+            //Create HTML Response using CustomHtmlResult
+        public IActionResult ReceiveForm(string name, string city) => new CustomHtmlResult
+        {
+            Content = $"{name} lives in {city}"
+        };
+        */
+
+        public ViewResult ReceiveForm(string name, string city) => View("StringResult", $"{name} lives in {city}");
 
     }
 }

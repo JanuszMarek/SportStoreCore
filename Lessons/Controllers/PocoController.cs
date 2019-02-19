@@ -34,7 +34,7 @@ namespace Lessons.Controllers
                 new EmptyModelMetadataProvider(),
                 new ModelStateDictionary())
                 {
-                    Model = ControllerContext.HttpContext.Request.Headers.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.First())
+                    Model = ControllerContext.HttpContext.Request.Headers.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.First()),
                 }
         };
 
