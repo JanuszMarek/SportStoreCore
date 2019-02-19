@@ -35,9 +35,17 @@ namespace Lessons
 
             //add possibility to use Inline Custom Constraint 
             services.Configure<RouteOptions>(options =>
-                options.ConstraintMap.Add("weekday", typeof(WeekDayConstraint)));
+            {
+                options.ConstraintMap.Add("weekday", typeof(WeekDayConstraint));
+                options.LowercaseUrls = true;   //change URL to low case
+                options.AppendTrailingSlash = true; //add "/" to end of URL
+                });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            //AddMemoryCache  and  AddSession  methods create services that are required for session management
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,11 +64,31 @@ namespace Lessons
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            /*
+                The UseSession  method adds a middleware component to the pipeline that associates session
+                data with requests and adds cookies to responses to ensure that future requests can be identified.The
+                UseSession  method must be called before the  UseMvc method so that the session component can intercept
+                requests before they reach MVC middleware and can modify responses after they have been generated.
+            */
+            app.UseSession();
             app.UseCookiePolicy();
+
 
             //For using Route attributes
             //default:   {controller}/{action}/{id?} 
-            app.UseMvcWithDefaultRoute();
+            //app.UseMvcWithDefaultRoute();
+
+            app.UseMvc(routes => {
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
 
             /*
             app.UseMvc(routes =>
