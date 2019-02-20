@@ -13,6 +13,7 @@ using Lessons.Infrastructure;
 using Lessons.Areas.DependencyInjection.Models;
 using Lessons.Areas.DependencyInjection.Infrastructure;
 using Lessons.Areas.Filters.Infrastructure;
+using Lessons.Areas.API.Models;
 using Microsoft.AspNetCore.Routing;
 
 
@@ -77,6 +78,9 @@ namespace Lessons
 
             services.AddTransient<IModelStorage, DictionaryStorage>();
             services.AddTransient<ProductTotalizer>();
+
+            //API
+            services.AddSingleton<IReservRepository, ReservMemoryRepository>();
 
             //filtry
             services.AddScoped<IFilterDiagnostics, DefaultFilterDiagnostics>();
