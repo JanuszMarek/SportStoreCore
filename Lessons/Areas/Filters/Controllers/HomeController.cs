@@ -38,5 +38,22 @@ namespace Lessons.Areas.Filters.Controllers
         //[RequireHttps]
         public ViewResult SecondAction() => View("Message","This is the SecondAction action on the Home controller");
 
+        [RangeException]
+        public ViewResult GenerateException(int? id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            else if (id > 10)
+            {
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
+            else
+            {
+                return View("Message", $"The value is {id}");
+            }
+        }
+
     }
 }
