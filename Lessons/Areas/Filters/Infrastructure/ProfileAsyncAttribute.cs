@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Lessons.Areas.Filters.Infrastructure
 {
-    public class ProfileAsync : ActionFilterAttribute
+    public class ProfileAsyncAttribute : ActionFilterAttribute
     {
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
