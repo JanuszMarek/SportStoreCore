@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lessons.Areas.Filters.Controllers
 {
-    [Area("Filters")]
+    
   //  [RequireHttps]
     [HttpsOnly]
+  //  [Profile]
+    [ProfileAsync]
+    [Area("Filters")]
     public class HomeController : Controller
     {
         /* You can get the same with RequireHttps Attribute
