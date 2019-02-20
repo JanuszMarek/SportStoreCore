@@ -16,22 +16,26 @@ namespace Lessons.Areas.DependencyInjection.Controllers
         //public IRepository Repository { get; } = TypeBroker.Repository;
 
         private IRepository repository;
-        private ProductTotalizer totalizer;
+        //private ProductTotalizer totalizer;
 
         public HomeController(IRepository repo, ProductTotalizer total)
         {
             repository = repo;
-            totalizer = total;
+            //totalizer = total;
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromServices]ProductTotalizer totalizer)
         {
             //Action is depend of MemoryRepository
             // return View(new MemoryRepository().Products);
 
             //return View(Repository.Products);
 
-            ViewBag.Total = totalizer.Repository.ToString(); 
+            //Manually Requesting an Implementation Object 
+            //IRepository repository = HttpContext.RequestServices.GetService<IRepository>();
+
+            ViewBag.Total = totalizer.Total;
+            ViewBag.Totalizer = totalizer.Repository.ToString();
             ViewBag.HomeController = repository.ToString();
 
             return View(repository.Products);
