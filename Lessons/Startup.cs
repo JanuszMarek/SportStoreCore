@@ -10,7 +10,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Lessons.Infrastructure;
+using Lessons.Areas.DependencyInjection.Models;
+using Lessons.Areas.DependencyInjection.Infrastructure;
 using Microsoft.AspNetCore.Routing;
+
 
 namespace Lessons
 {
@@ -40,6 +43,12 @@ namespace Lessons
                 options.LowercaseUrls = true;   //change URL to low case
                 options.AppendTrailingSlash = true; //add "/" to end of URL
                 });
+
+            //DI - set AlternateRepo
+            TypeBroker.SetRepositoryType<AlternateRepository>();
+            //using ASP.NET DI
+            services.AddTransient<IRepository, MemoryRepository>();
+            services.AddTransient<IModelStorage, DictionaryStorage>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
