@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Lessons.Areas.Filters.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lessons.Areas.Filters.Controllers
 {
     [Area("Filters")]
-    [RequireHttps]
+  //  [RequireHttps]
+    [HttpsOnly]
     public class HomeController : Controller
     {
         /* You can get the same with RequireHttps Attribute
@@ -26,10 +28,10 @@ namespace Lessons.Areas.Filters.Controllers
         }
         */
 
-        
+        //[RequireHttps]
         public ViewResult Index() => View("Message","This is the Index action on the Home controller");
 
-        [RequireHttps]
+        //[RequireHttps]
         public ViewResult SecondAction() => View("Message","This is the SecondAction action on the Home controller");
 
     }
