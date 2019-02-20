@@ -78,9 +78,18 @@ namespace Lessons
             services.AddTransient<IModelStorage, DictionaryStorage>();
             services.AddTransient<ProductTotalizer>();
 
+            //filtry
             services.AddScoped<IFilterDiagnostics, DefaultFilterDiagnostics>();
+            services.AddScoped<TimeFilter>();
+            services.AddScoped<ViewResultDiagnostics>();
+            services.AddScoped<DiagnosticsFilter>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddMvcOptions(options =>
+            {
+                //GLOBALS FILTERS
+                //options.Filters.AddService(typeof(ViewResultDiagnostics));
+                //options.Filters.AddService(typeof(DiagnosticsFilter));
+            });
 
             //AddMemoryCache  and  AddSession  methods create services that are required for session management
             services.AddMemoryCache();
