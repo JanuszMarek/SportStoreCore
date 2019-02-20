@@ -19,9 +19,11 @@ namespace Lessons
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IHostingEnvironment env;
+
+        public Startup(IHostingEnvironment hostEnv)
         {
-            Configuration = configuration;
+            env = hostEnv;
         }
 
         public IConfiguration Configuration { get; }
@@ -47,8 +49,33 @@ namespace Lessons
             //DI - set AlternateRepo
             TypeBroker.SetRepositoryType<AlternateRepository>();
             //using ASP.NET DI
-            services.AddTransient<IRepository, MemoryRepository>();
+            //Transient - tells the service provider to create a new instance of the implementation type whenever it needs to resolve a dependency
+
+            /* Diff Repo depends of Envairoment
+            services.AddTransient<IRepository>(provider => {
+                if (env.IsDevelopment())
+                {
+                    var x = provider.GetService<MemoryRepository>();
+                    return x;
+                }
+                else
+                {
+                    return new AlternateRepository();
+                }
+            });
+            services.AddTransient<MemoryRepository>();
+            */
+
+            //AddScoped  method ensures that both objects’ dependencies are resolved with a single MemoryRepository object.
+            //services.AddScoped<IRepository, MemoryRepository>();
+
+            //The AddSingleton  method creates a new instance of the  MemoryRepository  class the first time that it
+            //has to resolve a dependency on the IRepository  interface and then reuses that instance for any subsequent
+            //dependencies, even if they are associated with different HTTP requests
+            services.AddSingleton<IRepository, MemoryRepository>();
+
             services.AddTransient<IModelStorage, DictionaryStorage>();
+            services.AddTransient<ProductTotalizer>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

@@ -16,10 +16,12 @@ namespace Lessons.Areas.DependencyInjection.Controllers
         //public IRepository Repository { get; } = TypeBroker.Repository;
 
         private IRepository repository;
+        private ProductTotalizer totalizer;
 
-        public HomeController(IRepository repo)
+        public HomeController(IRepository repo, ProductTotalizer total)
         {
             repository = repo;
+            totalizer = total;
         }
 
         public IActionResult Index()
@@ -28,6 +30,10 @@ namespace Lessons.Areas.DependencyInjection.Controllers
             // return View(new MemoryRepository().Products);
 
             //return View(Repository.Products);
+
+            ViewBag.Total = totalizer.Repository.ToString(); 
+            ViewBag.HomeController = repository.ToString();
+
             return View(repository.Products);
         }
     }
