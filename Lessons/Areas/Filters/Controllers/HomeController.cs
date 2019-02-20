@@ -13,6 +13,8 @@ namespace Lessons.Areas.Filters.Controllers
     [HttpsOnly]
   //  [Profile]
    // [ProfileAsync]
+    [TypeFilter(typeof(DiagnosticsFilter))]
+    [TypeFilter(typeof(TimeFilter))]
     [Area("Filters")]
     public class HomeController : Controller
     {
@@ -32,7 +34,7 @@ namespace Lessons.Areas.Filters.Controllers
         */
 
         //[RequireHttps]
-        [ViewResultDetails]
+        //[ViewResultDetails]
         public ViewResult Index() => View("Message","This is the Index action on the Home controller");
 
         //[RequireHttps]
