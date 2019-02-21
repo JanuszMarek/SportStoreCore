@@ -15,7 +15,8 @@ using Lessons.Areas.DependencyInjection.Infrastructure;
 using Lessons.Areas.Filters.Infrastructure;
 using Lessons.Areas.API.Models;
 using Microsoft.AspNetCore.Routing;
-
+using Microsoft.AspNetCore.Mvc.Razor;
+using Lessons.Areas.ViewLesson.Infrastructure;
 
 namespace Lessons
 {
@@ -97,6 +98,14 @@ namespace Lessons
                     //options.Filters.AddService(typeof(ViewResultDiagnostics));
                     //options.Filters.AddService(typeof(DiagnosticsFilter));
                 });
+
+            //CHANGING DEFAULT LOCATION OF VIEWS
+            
+            services.Configure<RazorViewEngineOptions>(options => {
+                options.ViewLocationExpanders.Add(new SimpleExpander());
+                options.ViewLocationExpanders.Add(new ColorExpander());
+            });
+            
 
             //AddMemoryCache  and  AddSession  methods create services that are required for session management
             services.AddMemoryCache();

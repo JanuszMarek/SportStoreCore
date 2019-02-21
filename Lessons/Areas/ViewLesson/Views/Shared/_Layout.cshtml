@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link asp-href-include="lib/bootstrap/dist/css/*.min.css" rel="stylesheet" />
+    <title>View</title>
+</head>
+<body class="panel-body">
+    @RenderSection("Header")
+
+    <div class="bg-info">
+        This is part of the layout
+    </div>
+
+    @RenderBody()
+
+    <div class="bg-info">
+        This is part of the layout
+    </div>
+
+    @if (IsSectionDefined("Footer"))
+    {
+        @RenderSection("Footer")
+    }
+    else
+    {
+        <h4>This is the default footer</h4>
+    }
+
+
+    <div class="bg-info">
+        This is part of the layout
+    </div>
+
+    <!--false means that this sections is optional-->
+    @RenderSection("scripts", false)
+</body>
+</html>
