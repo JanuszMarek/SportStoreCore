@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link asp-href-include="lib/bootstrap/dist/css/*.min.css" rel="stylesheet" />
+    <title>ViewComponents</title>
+</head>
+<body class="panel-body">
+    <div class="bg-primary panel-body">
+        <div class="row">
+            <div class="col-xs-7"><h1>Products</h1></div>
+            <div class="col-xs-5">
+                <!--
+                <div>await Component.InvokeAsync("Poco")</div>
+                <div>await Component.InvokeAsync("CitySummary", new { showList = true })</div>
+                    -->
+                <div>@await Component.InvokeAsync("ComboComponent")</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel-body">@RenderBody()</div>
+    <!--
+        await Component.InvokeAsync("PageSize")
+            -->
+    </body>
+
+    </html>

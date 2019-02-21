@@ -29,13 +29,13 @@
     <Content Update="Areas\DependencyInjection\Views\_ViewStart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Areas\Filters\Views\Shared\_Layout.cshtml">
+    <Content Update="Areas\UsingViewComponents\Views\Shared\_Layout.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Areas\Filters\Views\_ViewImports.cshtml">
+    <Content Update="Areas\UsingViewComponents\Views\_ViewImports.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Areas\Filters\Views\_ViewStart.cshtml">
+    <Content Update="Areas\UsingViewComponents\Views\_ViewStart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Areas\ViewLesson\Views\Shared\_Layout.cshtml">
@@ -67,6 +67,8 @@
     <Folder Include="Areas\DependencyInjection\Data\" />
     <Folder Include="Areas\Filters\Data\" />
     <Folder Include="Areas\Filters\Models\" />
+    <Folder Include="Areas\Filters\Views\" />
+    <Folder Include="Areas\UsingViewComponents\Data\" />
     <Folder Include="Areas\ViewLesson\Data\" />
     <Folder Include="Areas\ViewLesson\Models\" />
     <Folder Include="Models\ViewModels\" />
