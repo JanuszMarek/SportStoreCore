@@ -88,12 +88,15 @@ namespace Lessons
             services.AddScoped<ViewResultDiagnostics>();
             services.AddScoped<DiagnosticsFilter>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddMvcOptions(options =>
-            {
-                //GLOBALS FILTERS
-                //options.Filters.AddService(typeof(ViewResultDiagnostics));
-                //options.Filters.AddService(typeof(DiagnosticsFilter));
-            });
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddXmlDataContractSerializerFormatters()   //server can send data i XML
+                .AddMvcOptions(options =>
+                {
+                    //GLOBALS FILTERS
+                    //options.Filters.AddService(typeof(ViewResultDiagnostics));
+                    //options.Filters.AddService(typeof(DiagnosticsFilter));
+                });
 
             //AddMemoryCache  and  AddSession  methods create services that are required for session management
             services.AddMemoryCache();
