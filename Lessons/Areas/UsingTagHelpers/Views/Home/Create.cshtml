@@ -5,7 +5,8 @@
 
 <h2>Create</h2>
 
-<form method="post">
+<form method="post" asp-action="Create" asp-controller="Home" asp-area="UsingTagHelpers" asp-antiforgery="true">
+    <!-- using custom helper-for helpers
     <div class="form-group">
         <label helper-for="Name">Name:</label>
         <input helper-for="Name" />
@@ -20,7 +21,44 @@
         <label helper-for="Population">Population:</label>
         <input helper-for="Population" />
     </div>
-    <!--
+        -->
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Country"></label>
+        <!--<input asp-for="Country" class="form-control" />
+        <!--
+        <select class="form-control " asp-for="Country">
+            <option disabled selected value="">Select a Country</option>
+            <option>UK</option>
+            <option>USA</option>
+            <option>France</option>
+            <option>China</option>
+        </select>
+            -->
+        <!--Items from Enum-->
+        <select class="form-control" asp-for="Country" asp-items="@new SelectList(Enum.GetNames(typeof(CountryNames)))">
+            <option disabled selected value="">Select a Country</option>
+        </select>
+
+        <!--Items from Controller-->
+        <!--
+            <select class="form-control" asp-for="Country" asp-items="ViewBag.Countries">
+                <option disabled selected value="">Select a Country</option>
+            </select>
+        -->
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Population"></label>
+        <input asp-for="Population" class="form-control" />
+    </div>
+
+    <!-- using custom helpers
+
     <button type="submit" bs-button-color="danger">Add</button>
     <button type="reset" class="btn btn-primary">Reset</button>
         -->
@@ -29,10 +67,22 @@
     <formbutton type="reset" bg-color="danger" />
     <a bs-button-color="primary" href=@Url.Action("Index")>Cancel</a>
         -->
+    <!--
+        <div theme="info">
+            <button type="submit">Add</button>
+            <button type="reset">Reset</button>
+            <a href="/Home/Index">Cancel</a>
+        </div>
+    -->
 
-    <div theme="info">
-        <button type="submit">Add</button>
-        <button type="reset">Reset</button>
-        <a href="/Home/Index">Cancel</a>
+
+    <div class="form-group">
+        <label asp-for="Notes"></label>
+        <textarea class="form-control" asp-for="Notes"></textarea>
     </div>
-</form> 
+
+
+    <button type="submit" class="btn btn-primary">Add</button>
+    <a class="btn btn-primary" href=@Url.Action("Index")>Cancel</a>
+
+</form>
