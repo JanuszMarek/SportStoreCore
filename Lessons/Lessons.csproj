@@ -29,6 +29,24 @@
     <Content Update="Areas\DependencyInjection\Views\_ViewStart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Areas\Filters\Views\Shared\_Layout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Filters\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Filters\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\UsingTagHelpers\Views\Shared\_Layout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\UsingTagHelpers\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\UsingTagHelpers\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\UsingViewComponents\Views\Shared\_Layout.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -67,7 +85,7 @@
     <Folder Include="Areas\DependencyInjection\Data\" />
     <Folder Include="Areas\Filters\Data\" />
     <Folder Include="Areas\Filters\Models\" />
-    <Folder Include="Areas\Filters\Views\" />
+    <Folder Include="Areas\UsingTagHelpers\Data\" />
     <Folder Include="Areas\UsingViewComponents\Data\" />
     <Folder Include="Areas\ViewLesson\Data\" />
     <Folder Include="Areas\ViewLesson\Models\" />

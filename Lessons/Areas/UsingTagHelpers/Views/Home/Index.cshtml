@@ -1,0 +1,29 @@
+﻿@model IEnumerable<TagCity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table table-condensed table-bordered">
+    <thead class="bg-primary">
+        <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th class="text-right">Population</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var city in Model)
+        {
+            <tr>
+                <td wrap>@city.Name</td>
+                <td>@city.Country</td>
+                <td class="text-right">@city.Population?.ToString("#,###")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href=@Url.Action("Create")>Create</a> 

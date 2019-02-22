@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Lessons.Areas.ViewLesson.Infrastructure;
 using Lessons.Areas.UsingViewComponents.Models;
+using Lessons.Areas.UsingTagHelpers.Models;
 
 namespace Lessons
 {
@@ -88,6 +89,9 @@ namespace Lessons
             //UsingViewComponents
             services.AddSingleton<IProductCompRepository, MemoryProductCompRepository>();
             services.AddSingleton<ICityRepository, MemoryCityRepository>();
+
+            //TagHelpers
+            services.AddSingleton<ITagRepository, MemoryTagRepository>();
 
             //filtry
             services.AddScoped<IFilterDiagnostics, DefaultFilterDiagnostics>();
