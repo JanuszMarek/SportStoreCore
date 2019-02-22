@@ -7,10 +7,26 @@
     <title>Filters</title>
 </head>
 <body class="panel-body">
+    <!--
     <div show-for-action="Index" class="panel-body bg-danger">
         <h2>Important Message</h2>
     </div>
-    <div title="Cities">
+        -->
+    <environment names="development">
+        <div class="panel-body bg-info"><h2>This is Development</h2></div>
+    </environment>
+    <environment names="production">
+        <div class="panel-body bg-danger"><h2>This is Production</h2></div>
+    </environment>
+    <img src="/images/city.png" asp-append-version="true" />
+
+    <!--expires-after="@TimeSpan.FromSeconds(15)" -->
+    <cache expires-sliding="@TimeSpan.FromSeconds(10)" vary-by-route="action">
+        <div class="pull-right">
+            @await Component.InvokeAsync("Time")
+        </div>
+    </cache>
+    <div title="">
         @RenderBody()
     </div>
 </body>
