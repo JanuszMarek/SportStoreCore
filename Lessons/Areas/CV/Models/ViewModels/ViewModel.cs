@@ -9,7 +9,7 @@ namespace Lessons.Areas.CV.Models.ViewModels
     {
         public PersonalInfo PersonalInfo { get; set; }
         public List<Category> Categories { get; set; } = new List<Category>();
-        public string[] Skills { get; set; }
-        public string[] Languages { get; set; }
+        public Dictionary<string, string[]> Skills { get; set; }
+
     }
 }

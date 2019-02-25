@@ -16,5 +16,6 @@ namespace Lessons.Areas.CV.Models
         public string Email { get; set; }
         public string GitHub { get; set; }
         public string LinkedIn { get; set; }
+        public string PhotoURL { get; set; }
     }
 }

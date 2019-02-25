@@ -1,0 +1,119 @@
+﻿body {
+    font-family: 'Lato', sans-serif;
+}
+
+.container{
+    max-width: 750px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    margin-top: 0;
+    font-weight: 500;
+}
+
+h3 {
+    margin-top: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 12px;
+}
+
+h5 {
+    font-size: 10px;
+}
+
+.bar {
+    position: relative;
+    min-height: 200px;
+    margin-bottom: 10px;
+    background-color: #1561bf;
+    color: white
+}
+
+.footer {
+    font-size: 8px;
+    text-align: center;
+    background-color: #1561bf;
+    color: white;
+    padding: 10px;
+}
+
+.photo {
+    height: 100px;
+}
+
+    .photo img {
+        position: absolute;
+        top: -60px;
+        right: 30px;
+        object-fit: cover;
+        height: 200px;
+        width: 200px;
+        z-index: 9999;
+        box-shadow: 25px 25px 50px 0 white inset, -25px -25px 50px 0 white inset;
+    }
+
+.personal-info{
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.icon {
+    width: 20px;
+}
+
+.tab {
+    position: relative;
+    left: 24px;
+}
+
+.categorybox {
+    margin: 1px;
+}
+
+.categorybox hr {
+    margin: 0;
+    width: 98%;
+}
+
+.categoryitem {
+    margin-top: 10px;
+}
+
+.nopadding
+{
+    padding: 0;
+}
+
+.posterbox
+{
+    height: 70px;
+    width: 110px;
+}
+
+.poster {
+    object-fit: contain;
+    height: 90px;
+    width: 80px;
+}
+
+.margintop10 {
+    margin-top: 10px;
+}
+
+.skills {
+    margin-bottom: 5px;
+}
+
+.skills h3 {
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
