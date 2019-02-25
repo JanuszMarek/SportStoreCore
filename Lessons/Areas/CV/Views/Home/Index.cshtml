@@ -7,22 +7,20 @@
 
 <div class="row bar">
 
-    <div class="col-xs-12">
-        <div class="name row">
-            <h1>
-                @Model.PersonalInfo.FirstName
-                <span class="lastname">@Model.PersonalInfo.LastName</span>
-            </h1>
-        </div>
-    </div>
-
     <div class="photo col-xs-3 col-xs-offset-1">
         <img src="@Model.PersonalInfo.PhotoURL" class="img-circle img-responsive" />
     </div>
 
     <div class="col-xs-8 nopadding">
+        <div class="name">
+            <h1>
+                @Model.PersonalInfo.FirstName
+                <span class="lastname">@Model.PersonalInfo.LastName</span>
+            </h1>
+        </div>
 
         <div class="col-xs-6 margintop10">
+
             <div class="row personal-info">
                 <i class="icon glyphicon glyphicon-calendar"></i>
                 <span>@Model.PersonalInfo.Birthdate.ToShortDateString()</span>

@@ -15,9 +15,7 @@ using Lessons.Areas.DependencyInjection.Infrastructure;
 using Lessons.Areas.Filters.Infrastructure;
 using Lessons.Areas.API.Models;
 using Microsoft.AspNetCore.Routing;
-using jsreport.AspNetCore;
-using jsreport.Local;
-using jsreport.Binary;
+
 
 namespace Lessons
 {
@@ -96,12 +94,6 @@ namespace Lessons
                 //options.Filters.AddService(typeof(ViewResultDiagnostics));
                 //options.Filters.AddService(typeof(DiagnosticsFilter));
             });
-
-            
-            services.AddJsReport(new LocalReporting()
-                .UseBinary(JsReportBinary.GetBinary())
-                .AsUtility()
-                .Create());
                 
             //AddMemoryCache  and  AddSession  methods create services that are required for session management
             services.AddMemoryCache();

@@ -8,16 +8,14 @@ using Lessons.Areas.CV.Models.ViewModels;
 using System.Web;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Html;
-using jsreport.AspNetCore;
-using jsreport.Types;
+
 
 namespace Lessons.Areas.CV.Controllers
 {
     [Area("CV")]
     public class HomeController : Controller
     {
-        //[MiddlewareFilter(typeof(JsReportPipeline))]
-        public IActionResult Index()
+        public IActionResult Index(bool pdf = false)
         {
             ViewModel viewModel = new ViewModel();
             viewModel.PersonalInfo = new PersonalInfo();
@@ -123,9 +121,9 @@ namespace Lessons.Areas.CV.Controllers
             viewModel.Skills["Falowniki"] = new[] { "Lenze" };
             viewModel.Skills["Pozostałe"] = new[] { "j. angielski – poziom (B2)" ,"prawo jazdy kat. B" };
 
-
-            //HttpContext.JsReportFeature().Recipe(Recipe.ChromePdf);
             return View(viewModel);
         }
+
+
     }
 }
