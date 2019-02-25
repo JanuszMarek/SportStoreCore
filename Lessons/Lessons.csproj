@@ -50,6 +50,18 @@
     <Content Update="Areas\Filters\Views\_ViewStart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Areas\ModelBinding\Views\Shared\Message.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\ModelBinding\Views\Shared\_Layout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\ModelBinding\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\ModelBinding\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\UsingTagHelpers\Views\Shared\_Layout.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -98,6 +110,7 @@
     <Folder Include="Areas\DependencyInjection\Data\" />
     <Folder Include="Areas\Filters\Data\" />
     <Folder Include="Areas\Filters\Models\" />
+    <Folder Include="Areas\ModelBinding\Data\" />
     <Folder Include="Areas\UsingTagHelpers\Data\" />
     <Folder Include="Areas\UsingViewComponents\Data\" />
     <Folder Include="Areas\ViewLesson\Data\" />

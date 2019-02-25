@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Lessons.Areas.ViewLesson.Infrastructure;
 using Lessons.Areas.UsingViewComponents.Models;
 using Lessons.Areas.UsingTagHelpers.Models;
+using Lessons.Areas.ModelBinding.Models;
 
 namespace Lessons
 {
@@ -86,12 +87,11 @@ namespace Lessons
             services.AddSingleton<IReservRepository, ReservMemoryRepository>();
             
 
-            //UsingViewComponents
+            //AREAs
             services.AddSingleton<IProductCompRepository, MemoryProductCompRepository>();
             services.AddSingleton<ICityRepository, MemoryCityRepository>();
-
-            //TagHelpers
             services.AddSingleton<ITagRepository, MemoryTagRepository>();
+            services.AddSingleton<IBindRepository, MemoryBindRepository>();
 
             //filtry
             services.AddScoped<IFilterDiagnostics, DefaultFilterDiagnostics>();
