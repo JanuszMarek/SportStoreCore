@@ -1,0 +1,125 @@
+﻿@model Lessons.Areas.CV.Models.ViewModels.ViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    
+}
+
+<div class="row bar">
+
+    <div class="photo col-xs-3 col-xs-offset-1">
+        <img src="@Model.PersonalInfo.PhotoURL" class="img-circle img-responsive" />
+    </div>
+
+    <div class="col-xs-8 nopadding">
+        <div class="name">
+            <h1>
+                @Model.PersonalInfo.FirstName
+                <span class="lastname">@Model.PersonalInfo.LastName</span>
+            </h1>
+        </div>
+
+        <div class="col-xs-6 margintop10">
+
+            <div class="row personal-info">
+                <i class="icon glyphicon glyphicon-calendar"></i>
+                <span>@Model.PersonalInfo.Birthdate.ToShortDateString()</span>
+            </div>
+            <div class="row personal-info">
+                <i class="icon glyphicon glyphicon-home"></i>
+                <span>@Model.PersonalInfo.StreetNo</span>
+                <div>
+                    <span class="tab">@Model.PersonalInfo.ZipCode</span>
+                </div>
+            </div>
+
+            <div class="row personal-info">
+                <i class="icon glyphicon glyphicon-earphone"></i>
+                <span>@Model.PersonalInfo.PhoneNo</span>
+            </div>
+        </div>
+
+        <div class="col-xs-6 margintop10">
+
+            <div class="row personal-info">
+                <i class="icon glyphicon glyphicon-envelope"></i>
+                <span>@Model.PersonalInfo.Email</span>
+            </div>
+
+            <div class="row personal-info">
+                <i class="icon fab fa-github"></i>
+                <span>@Model.PersonalInfo.GitHub</span>
+            </div>
+
+            <div class="row personal-info">
+                <i class="icon fab fa-linkedin"></i>
+                <span>@Model.PersonalInfo.LinkedIn</span>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+<div class="row">
+
+    @foreach (var cat in Model.Categories)
+    {
+        <div class="col-xs-6 nopadding">
+            <div class="categorybox container-fluid">
+                <h2>@cat.Name</h2>
+                <hr />
+                @foreach (var item in cat.CategoryItems)
+                {
+                    <div class="row categoryitem">
+                        <div class="col-xs-3 posterbox">
+                            <image class="poster" src="@item.PhotoUrl"></image>
+                        </div>
+                        <div class="col-xs-8 nopadding">
+                            <h3>@item.Title</h3>
+                            <h4>@item.SubTitle</h4>
+                            <h4>@item.Description</h4>
+                            <h5>
+
+                                @for (var i = 0; i < item.Years.Length; i++)
+                                {
+                                    if (i > 0)
+                                    {
+                                        <br />
+                                    }
+                                    <span>@item.Years[i]</span>
+                                }
+
+                            </h5>
+                            
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+</div>
+
+<div class="row">
+    <div class="categorybox container-fluid">
+        <h2>Umiejętności</h2>
+        <hr />
+        @foreach (var skill in Model.Skills)
+        {
+            <div class="col-xs-4 skills">
+                <h3>@skill.Key</h3>
+                @foreach (var item in skill.Value)
+                {
+                    <h4 class="skillitem">- @item</h4>
+                }
+            </div>
+        }
+    </div>
+</div>
+    <div class="row footer container">
+        Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)).
+    </div>
