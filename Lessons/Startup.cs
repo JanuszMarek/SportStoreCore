@@ -107,6 +107,8 @@ namespace Lessons
                     //GLOBALS FILTERS
                     //options.Filters.AddService(typeof(ViewResultDiagnostics));
                     //options.Filters.AddService(typeof(DiagnosticsFilter));
+
+                   // options.ModelBindingMessageProvider.ValueMustNotBeNullAccessor("Please enter a value");
                 });
 
             //CHANGING DEFAULT LOCATION OF VIEWS
