@@ -119,8 +119,10 @@ namespace Lessons
             services.AddIdentity<AppUser, IdentityRole>(
                 opts =>
                 {
+                    //opts.Cookies.ApplicationCookie.LoginPath = "Indentity/Account/Login";
+
                     opts.User.RequireUniqueEmail = true;
-                    opts.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyz";
+                    //opts.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyz";
 
                     opts.Password.RequiredLength = 6;
                     opts.Password.RequireNonAlphanumeric = false;
@@ -177,8 +179,10 @@ namespace Lessons
                 UseSession  method must be called before the  UseMvc method so that the session component can intercept
                 requests before they reach MVC middleware and can modify responses after they have been generated.
             */
+            
             app.UseSession();
             //app.UseCookiePolicy();
+            
             app.UseIdentity();
 
 
@@ -187,6 +191,12 @@ namespace Lessons
             //app.UseMvcWithDefaultRoute();
 
             app.UseMvc(routes => {
+                routes.MapRoute(
+                    name: "Login",
+                    template: "/Account/{action}/",
+                    defaults: new { area = "Identity",controller = "Account", action="Login"}
+                    );
+
                 routes.MapRoute(
                     name: "areas",
                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
@@ -228,6 +238,8 @@ namespace Lessons
 
             });
              */
+
+            AppIdentityDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
         }
     }
 }

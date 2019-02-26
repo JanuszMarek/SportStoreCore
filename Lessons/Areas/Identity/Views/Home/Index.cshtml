@@ -11,4 +11,9 @@
     {
         <tr><th>@kvp.Key</th><td>@kvp.Value</td></tr>
     }
-</table> 
+</table>
+
+@if (User?.Identity?.IsAuthenticated ?? false)
+{
+    <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Logout</a>
+}  
