@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link asp-href-include="lib/bootstrap/dist/css/*.min.css" rel="stylesheet" />
+    <script asp-src-include="lib/jquery/dist/*.js"></script>
+
+    <title>Filters</title>
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+    @RenderSection("scripts",false)
+    
+    
+</body>
+</html>

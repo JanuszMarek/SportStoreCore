@@ -1,8 +1,0 @@
-{
-  "extensions": {
-    "chrome-pdf": {
-      "strategy": "chrome-pool",
-      "numberOfWorkers": 3
-    }
-  }
-}

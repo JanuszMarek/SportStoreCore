@@ -50,6 +50,15 @@
     <Content Update="Areas\Filters\Views\_ViewStart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Areas\Identity\Views\Shared\_Layout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Identity\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Identity\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\ModelBinding\Views\Shared\_Layout.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -116,6 +125,7 @@
     <Folder Include="Areas\DependencyInjection\Data\" />
     <Folder Include="Areas\Filters\Data\" />
     <Folder Include="Areas\Filters\Models\" />
+    <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Areas\ModelBinding\Data\" />
     <Folder Include="Areas\ModelValidation\Data\" />
     <Folder Include="Areas\UsingTagHelpers\Data\" />

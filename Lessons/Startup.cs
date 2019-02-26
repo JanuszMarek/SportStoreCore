@@ -20,19 +20,27 @@ using Lessons.Areas.ViewLesson.Infrastructure;
 using Lessons.Areas.UsingViewComponents.Models;
 using Lessons.Areas.UsingTagHelpers.Models;
 using Lessons.Areas.ModelBinding.Models;
+using Lessons.Areas.Identity.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Lessons.Areas.Identity.Infrastructure;
 
 namespace Lessons
 {
     public class Startup
     {
         private IHostingEnvironment env;
+        IConfigurationRoot Configuration;
 
         public Startup(IHostingEnvironment hostEnv)
         {
             env = hostEnv;
+            Configuration = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json").Build();
         }
 
-        public IConfiguration Configuration { get; }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -99,6 +107,28 @@ namespace Lessons
             services.AddScoped<ViewResultDiagnostics>();
             services.AddScoped<DiagnosticsFilter>();
 
+
+            //IDENTITY
+
+            //  Registering a Custom Password Validator
+            services.AddTransient<IPasswordValidator<AppUser>, CustomPasswordValidator2>();
+            //  Registering a Custom User Validator
+            services.AddTransient<IUserValidator<AppUser>, CustomUserValidator2>();
+
+            services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(Configuration["Data:SportStoreIdentity:ConnectionString"]));
+            services.AddIdentity<AppUser, IdentityRole>(
+                opts =>
+                {
+                    opts.User.RequireUniqueEmail = true;
+                    opts.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyz";
+
+                    opts.Password.RequiredLength = 6;
+                    opts.Password.RequireNonAlphanumeric = false;
+                    opts.Password.RequireLowercase = false;
+                    opts.Password.RequireUppercase = false;
+                    opts.Password.RequireDigit = false;
+                }).AddEntityFrameworkStores<AppIdentityDbContext>();
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddXmlDataContractSerializerFormatters()   //server can send data i XML
@@ -149,6 +179,7 @@ namespace Lessons
             */
             app.UseSession();
             //app.UseCookiePolicy();
+            app.UseIdentity();
 
 
             //For using Route attributes
