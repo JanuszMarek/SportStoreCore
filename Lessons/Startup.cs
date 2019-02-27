@@ -24,6 +24,8 @@ using Lessons.Areas.Identity.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Lessons.Areas.Identity.Infrastructure;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lessons
 {
@@ -114,6 +116,36 @@ namespace Lessons
             services.AddTransient<IPasswordValidator<AppUser>, CustomPasswordValidator2>();
             //  Registering a Custom User Validator
             services.AddTransient<IUserValidator<AppUser>, CustomUserValidator2>();
+            //  Creating Custom Policy Requirements 
+            services.AddTransient<IAuthorizationHandler, BlockUsersHandler>();
+            //  Creating the Resource Authorization Policy and Handler 
+            services.AddTransient<IAuthorizationHandler, DocumentAuthorizationHandler>();
+
+            services.AddAuthorization(opts => {
+                opts.AddPolicy("JoeUsers", policy => 
+                {
+                    policy.RequireUserName("Joe");
+                    policy.RequireRole("Users");
+                    //policy.RequireClaim(ClaimTypes.StateOrProvince, "DC");
+                });
+
+                opts.AddPolicy("NotBob", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.AddRequirements(new BlockUsersRequirement(new[] { "Bob" }));
+                });
+
+                opts.AddPolicy("AuthorsAndEditors", policy => 
+                {
+                    policy.AddRequirements(new DocumentAuthorizationRequirement
+                    {
+                        AllowAuthors = true,
+                        AllowEditors = true
+                    });
+                });
+
+            });
+
 
             services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(Configuration["Data:SportStoreIdentity:ConnectionString"]));
             services.AddIdentity<AppUser, IdentityRole>(
@@ -157,7 +189,7 @@ namespace Lessons
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<AppUser> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -184,6 +216,7 @@ namespace Lessons
             //app.UseCookiePolicy();
             
             app.UseIdentity();
+            //app.UseClaimsTransformation(LocationClaimsProvider.AddClaims);
 
 
             //For using Route attributes
@@ -239,7 +272,7 @@ namespace Lessons
             });
              */
 
-            AppIdentityDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
+            //AppIdentityDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
         }
     }
 }
