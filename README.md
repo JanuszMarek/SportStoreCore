@@ -10,9 +10,9 @@ Core MVC".
 * [Contact](#contact)
 
 ## General info
-First project "SportStoreCore" contain simple web application of Sport Store. User can select items from cateogry, add them to the cart and checkout the order.
-Application also contain Admin panel, where administrator can Add/Edit/Delete products.<br>
-"Lesson" project contains lessons of individual areas of ASP.NET Core e.g Filters, Identity, Model binding/validations. Each area is a chapter from book, where features are described in details. This will help me to create own applications and I consider this project as a backup of knowledge, where I can look in moments of crisis. :)
+First project "SportStoreCore" contain simple web application of Sport Store. User can select items from cateogry, add them to the cart and checkout the order. Application also contain Admin panel, where administrator can Add/Edit/Delete products, see all orders and check which one is shipped.
+<br>
+"Lesson" project contains lessons of individual areas of ASP.NET Core e.g Filters, Identity, Model binding/validation. Each area is a chapter from book, where features are described in details. This will help me to create own applications. I consider this project as a backup of knowledge, where I can look in moments of crisis. :)
 
 ## Technologies
 * ASP.NET Core - 2.1.1
@@ -29,11 +29,12 @@ SportStoreCore:
 * Instance of Cart is saved in Session file
 * Form validation in checkout
 * Administration panel for CRUD items in shop
+* Administration panel for management orders
 * Custom Error page
-<br>
+
 Lessons:
-* Routing - creating and registering a simple route, defining default values, using attribute routing, customizing the routing system, working with areas
-* Controllers and Actions - creating POCO controllers, using the controller base class, producing a response (using the context object, HTML response, contents of files, errors and HTTP codes)
+* Routing - creating and registering a simple route, defining default values, using attribute routing, customizing the routing system, working with areas.
+* Controllers and Actions - creating POCO controllers, using the controller base class, producing a response (using the context object, HTML response, contents of files, errors and HTTP codes).
 * Dependency Injection - configuring the service provider, understanding service life cycles (Transient, Scoped, Singleton)
 * Filters - using and creating authorization, action, result, exception filters.
 * API Controllers - creating API controllers, getting/sending JSON data with HTTP Get/Post/Put/Delete methods.
