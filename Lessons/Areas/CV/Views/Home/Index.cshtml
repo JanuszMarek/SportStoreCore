@@ -8,7 +8,7 @@
 <div class="row bar">
 
     <div class="photo col-xs-3 col-xs-offset-1">
-        <img src="@Model.PersonalInfo.PhotoURL" class="img-circle img-responsive" />
+        <img src="@Model.PersonalInfo.PhotoURL" class="img-circle" />
     </div>
 
     <div class="col-xs-8 nopadding">
@@ -19,12 +19,9 @@
             </h1>
         </div>
 
-        <div class="col-xs-6 margintop10">
+        <div class="col-xs-5">
 
-            <div class="row personal-info">
-                <i class="icon glyphicon glyphicon-calendar"></i>
-                <span>@Model.PersonalInfo.Birthdate.ToShortDateString()</span>
-            </div>
+
             <div class="row personal-info">
                 <i class="icon glyphicon glyphicon-home"></i>
                 <span>@Model.PersonalInfo.StreetNo</span>
@@ -32,14 +29,17 @@
                     <span class="tab">@Model.PersonalInfo.ZipCode</span>
                 </div>
             </div>
-
+            <div class="row personal-info">
+                <i class="icon glyphicon glyphicon-calendar"></i>
+                <span>@Model.PersonalInfo.Birthdate.ToShortDateString()</span>
+            </div>
             <div class="row personal-info">
                 <i class="icon glyphicon glyphicon-earphone"></i>
                 <span>@Model.PersonalInfo.PhoneNo</span>
             </div>
         </div>
 
-        <div class="col-xs-6 margintop10">
+        <div class="col-xs-6">
 
             <div class="row personal-info">
                 <i class="icon glyphicon glyphicon-envelope"></i>
@@ -65,58 +65,86 @@
 </div>
 
 <div class="row">
+    
+        @foreach (var cat in Model.Categories)
+        {
+            <div class="col-xs-6 nopadding">
+                <div class="categorybox container-fluid">
+                    <h2>@cat.Name</h2>
+                    <hr />
+                    @foreach (var item in cat.CategoryItems)
+                    {
+                        <div class="row categoryitem">
+                            <div class="col-xs-3 posterbox">
+                                <image class="poster" src="@item.PhotoUrl"></image>
+                            </div>
+                            <div class="col-xs-7 nopadding">
 
-    @foreach (var cat in Model.Categories)
-    {
-        <div class="col-xs-6 nopadding">
-            <div class="categorybox container-fluid">
-                <h2>@cat.Name</h2>
-                <hr />
-                @foreach (var item in cat.CategoryItems)
-                {
-                    <div class="row categoryitem">
-                        <div class="col-xs-3 posterbox">
-                            <image class="poster" src="@item.PhotoUrl"></image>
-                        </div>
-                        <div class="col-xs-8 nopadding">
-                            <h3>@item.Title</h3>
-                            <h4>@item.SubTitle</h4>
-                            <h4>@item.Description</h4>
-                            <h5>
-
-                                @for (var i = 0; i < item.Years.Length; i++)
+                                @if (!String.IsNullOrEmpty(item.Title))
                                 {
-                                    if (i > 0)
-                                    {
-                                        <br />
-                                    }
-                                    <span>@item.Years[i]</span>
+                                    <h3>@item.Title</h3>
+                                }
+                                @if (!String.IsNullOrEmpty(item.SubTitle))
+                                {
+                                    <h4>@item.SubTitle</h4>
                                 }
 
-                            </h5>
-                            
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    }
 
+                                @if (!String.IsNullOrEmpty(item.Description))
+                                {
+                                    <h4>@item.Description</h4>
+                                }
+
+
+                                @if (item.Years.Length > 0)
+                                {
+                                    <h5>
+                                        @for (var i = 0; i < item.Years.Length; i++)
+                                        {
+                                            <span style="display:block; margin-bottom:5px;">@item.Years[i]</span>
+                                        }
+                                    </h5>
+                                }
+
+
+                            </div>
+                            <div class="col-xs-12">
+                                @if (item.Responsibility.Length > 0)
+                                {
+                                    <ul class="responsibility">
+                                        @for (var i = 0; i < item.Responsibility.Length; i++)
+                                        {
+                                            if (!String.IsNullOrEmpty(item.Responsibility[i]))
+                                            {
+                                                <li>@item.Responsibility[i]</li>
+                                            }
+                                        }
+                                    </ul>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+ 
 </div>
 
 <div class="row">
     <div class="categorybox container-fluid">
         <h2>Umiejętności</h2>
         <hr />
-        @foreach (var skill in Model.Skills)
+        @for (int i = 0; i < Model.Skills.Count(); i++)
         {
-            <div class="col-xs-4 skills">
-                <h3>@skill.Key</h3>
-                @foreach (var item in skill.Value)
-                {
-                    <h4 class="skillitem">- @item</h4>
-                }
-            </div>
+            var skill = Model.Skills.ElementAt(i);
+
+                <div class="col-xs-4 skills">
+                    <h3>@skill.Key</h3>
+                    @foreach (var item in skill.Value)
+                    {
+                        <h4 class="skillitem">- @item</h4>
+                    }
+                </div>
         }
     </div>
 </div>

@@ -12,5 +12,6 @@ namespace Lessons.Areas.CV.Models
         public string SubTitle { get; set; }
         public string Description { get; set; }
         public string[] Years { get; set; }
+        public string[] Responsibility { get; set; }
     }
 }
