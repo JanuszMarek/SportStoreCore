@@ -10,6 +10,7 @@ namespace Lessons.Areas.CV.Models.ViewModels
         public PersonalInfo PersonalInfo { get; set; }
         public List<Category> Categories { get; set; } = new List<Category>();
         public Dictionary<string, string[]> Skills { get; set; }
-
+        public bool IsEnglish { get; set; }
+        public string Color { get; set; }
     }
 }
